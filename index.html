@@ -44,26 +44,32 @@
     <script>
         const targetDate = new Date("2026-10-10T00:00:00").getTime();
 
-        function countdown() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
+function countdown() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
 
-            if (difference <= 0) {
-                document.getElementById("countdown").innerHTML =
-                    "Date Reached!";
-                return;
-            }
+    if (difference <= 0) {
+        document.getElementById("countdown").innerHTML = "Date Reached!";
+        return;
+    }
 
-            const days = Math.ceil(
-                difference / (1000 * 60 * 60 * 24)
-            );
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+        (difference % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    const seconds = Math.floor(
+        (difference % (1000 * 60)) / 1000
+    );
 
-            document.getElementById("countdown").innerHTML =
-                days + " Days";
-        }
+    document.getElementById("countdown").innerHTML =
+        `${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Seconds`;
+}
 
-        countdown();
-        setInterval(countdown, 1000);
+countdown();
+setInterval(countdown, 1000);
     </script>
 
 </body>
