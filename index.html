@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Days Remaining</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .countdown-box {
+            width: 350px;
+            padding: 30px;
+            text-align: center;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .countdown-box h2 {
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="countdown-box">
+        <h2>Days Remaining</h2>
+        <div id="countdown"></div>
+    </div>
+
+    <script>
+        const targetDate = new Date("2026-10-10T00:00:00").getTime();
+
+        function countdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById("countdown").innerHTML =
+                    "Date Reached!";
+                return;
+            }
+
+            const days = Math.ceil(
+                difference / (1000 * 60 * 60 * 24)
+            );
+
+            document.getElementById("countdown").innerHTML =
+                days + " Days";
+        }
+
+        countdown();
+        setInterval(countdown, 1000);
+    </script>
+
+</body>
+</html>
